@@ -11,7 +11,7 @@ tape('should get health', function (t) {
   client.getHealth(function (err, health) {
     if (err) t.error('should not error')
 
-    t.ok(health.uptime, 'should get uptime')
+    t.equal(health.uptime, false, 'should get uptime')
 
     t.end()
   })
