@@ -1,9 +1,9 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const passport = require('passport')
 
-const Mongodb = require('./adaptors/mongodb')
 const middleware = require('./middleware')
-const UserService = require('./services/user')
+const api = require('./api')
 
 const app = express()
 
@@ -12,16 +12,10 @@ app.use(middleware.health)
 app.options('*', middleware.cors)
 app.disable('x-powered-by')
 app.use(bodyParser.json({ limit: '5mb' }))
+app.use(passport.initialize())
+app.use(passport.session())
 
-app.get('/users', async (req, res, next) => {
-  const users = await Mongodb.find('users')
-  res.json(users)
-})
-
-app.post('/users', async (req, res, next) => {
-  const { username } = await UserService.createUser(req.body)
-  res.json({ username })
-})
+app.use('/api', api)
 
 module.exports = (opts = {}, cb) => {
   const port = opts.port || 3000
