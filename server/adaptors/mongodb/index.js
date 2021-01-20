@@ -1,4 +1,5 @@
 const User = require('../../models/user')
+// const Passport = require('../../services/passport')
 
 const mockUsers = require('../../mocks/mock-user.json')
 
@@ -11,13 +12,22 @@ const Models = {
 module.exports = {
   find,
   findById,
-  create
+  create,
+  createUser
 }
 
 async function find (model, options = {}) {
   if (IS_TEST) return findTest(model, {}, options)
 
   return Models[model].find()
+}
+
+async function createUser ({ username, email, phonenumber, password }) {
+  if (IS_TEST) return { username, email, phonenumber }
+
+  const newUser = new User({ username, email, phonenumber })
+  await User.register(newUser, password)
+  return { username, email, phonenumber }
 }
 
 async function findById (model, id, options = {}) {

@@ -7,8 +7,8 @@ module.exports = function (opts = {}) {
 
   return {
     getHealth,
-    getUsers,
-    createUser
+    createUser,
+    authenticateUser
   }
 
   function getHealth (cb) {
@@ -16,13 +16,16 @@ module.exports = function (opts = {}) {
     getJSON(url, cb)
   }
 
-  function getUsers (cb) {
-    const url = `${endpoint}/users`
-    getJSON(url, cb)
+  function createUser (data, cb) {
+    const url = `${endpoint}/api/user/create`
+    // const opts = {
+    //   headers: { authorization: userEmail }
+    // }
+    postJSON(url, data, {}, cb)
   }
 
-  function createUser (data, cb) {
-    const url = `${endpoint}/users`
+  function authenticateUser (data, cb) {
+    const url = `${endpoint}/api/user/authenticate`
     // const opts = {
     //   headers: { authorization: userEmail }
     // }
