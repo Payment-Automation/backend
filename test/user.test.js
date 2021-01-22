@@ -21,7 +21,8 @@ tape('Should create user via api', function (t) {
       email: 'chibuzor.ojukwu@gmail.com',
       phonenumber: '09036229746'
     },
-    status: 'Success'
+    status: 'Success',
+    token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9'
   }
 
   client.createUser(userData, function (err, data) {

@@ -14,7 +14,8 @@ async function registerUser (req, res, next) {
 
   try {
     const user = await UserService.createUser({ username, email, phonenumber, password })
-    res.json({ user, status: 'Success' })
+    const token = JwtService.generateJwt(user)
+    res.json({ user, status: 'Success', token })
   } catch (error) {
     res.status(500).json({ message: error.message })
   }
