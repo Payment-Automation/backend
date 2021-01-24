@@ -1,0 +1,12 @@
+{
+  "transactionReference": "MNFY|75|20210124205129|000802",
+  "paymentReference": "30190",
+  "merchantName": "Payment Automation",
+  "apiKey": "MK_TEST_HXFG2NR39N",
+  "redirectUrl": "https://my-merchants-page.com/transaction/confirm",
+  "enabledPaymentMethod": [
+      "CARD",
+      "ACCOUNT_TRANSFER"
+  ],
+  "checkoutUrl": "https://sandbox.sdk.monnify.com/checkout/MNFY|75|20210124205129|000802"
+}
