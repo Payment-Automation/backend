@@ -6,6 +6,7 @@ const Client = require('../client')
 
 const endpoint = `http://localhost:${port}`
 const client = Client({ endpoint })
+const authToken = 'e-test-token'
 
 tape('Should initialize payment for monnify', function (t) {
   const data = {
@@ -26,7 +27,7 @@ tape('Should initialize payment for monnify', function (t) {
     checkoutUrl: 'https://sandbox.sdk.monnify.com/checkout/MNFY|75|20210124205129|000802'
   }
 
-  client.initializeMonnifyTransaction(data, function (err, data) {
+  client.initializeMonnifyTransaction(data, authToken, function (err, data) {
     if (err) t.error(err)
 
     t.deepEqual(data, expected)
@@ -41,7 +42,7 @@ tape('Should return error if customer name is missing', function (t) {
     redirectUrl: 'https://my-merchants-page.com/transaction/confirm'
   }
 
-  client.initializeMonnifyTransaction(data, function (err, data) {
+  client.initializeMonnifyTransaction(data, authToken, function (err, data) {
     if (err) t.ok(err)
 
     t.end()
@@ -55,7 +56,7 @@ tape('Should return error if customer email is missing', function (t) {
     redirectUrl: 'https://my-merchants-page.com/transaction/confirm'
   }
 
-  client.initializeMonnifyTransaction(data, function (err, data) {
+  client.initializeMonnifyTransaction(data, authToken, function (err, data) {
     if (err) t.ok(err)
 
     t.end()
@@ -69,7 +70,7 @@ tape('Should return error if redirect url is missing', function (t) {
     customerName: 'test'
   }
 
-  client.initializeMonnifyTransaction(data, function (err, data) {
+  client.initializeMonnifyTransaction(data, authToken, function (err, data) {
     if (err) t.ok(err)
 
     t.end()

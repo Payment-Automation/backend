@@ -33,12 +33,12 @@ module.exports = function (opts = {}) {
     postJSON(url, data, {}, cb)
   }
 
-  function initializeMonnifyTransaction (data, cb) {
+  function initializeMonnifyTransaction (data, authToken, cb) {
     const url = `${endpoint}/api/monnify/initialize`
-    // const opts = {
-    //   headers: { authorization: userEmail }
-    // }
-    postJSON(url, data, {}, cb)
+    const opts = {
+      headers: { authorization: `Bearer ${authToken}` }
+    }
+    postJSON(url, data, opts, cb)
   }
 
   function getJSON (url, opts, cb) {

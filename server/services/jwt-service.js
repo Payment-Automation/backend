@@ -2,7 +2,9 @@ const jwt = require('jsonwebtoken')
 const IS_TEST = process.env.NODE_ENV === 'test'
 
 module.exports = {
-  generateJwt
+  generateJwt,
+  checkJwt,
+  getTokenFromHeader
 }
 
 function generateJwt (user) {
@@ -16,4 +18,22 @@ function generateJwt (user) {
   )
 
   return token
+}
+
+function getTokenFromHeader (req) {
+  const authHeader = req.headers.authorization
+  if (!authHeader) return false
+  const arr = authHeader.split(' ')
+  const token = arr[0] === 'Bearer' ? arr[1] : false
+  return token
+}
+
+function checkJwt (token) {
+  if (IS_TEST) return token
+  let decodedToken
+  jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+    if (err) return false
+    decodedToken = decoded
+  })
+  return decodedToken
 }

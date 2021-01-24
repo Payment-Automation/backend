@@ -22,5 +22,6 @@ router.post(
 
 router.post(
   '/monnify/initialize',
+  middleware.jwtCheck,
   monnifyApi.initialize
 )
