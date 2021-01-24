@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "NODE_ENV=test tape test/*.js && standard",
+    "test": "NODE_ENV=test MONNIFY_CONTRACT_CODE=12099434 tape test/*.js && standard",
     "dev": "nodemon index.js | pino-pretty"
   },
   "repository": {

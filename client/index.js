@@ -8,7 +8,8 @@ module.exports = function (opts = {}) {
   return {
     getHealth,
     createUser,
-    authenticateUser
+    authenticateUser,
+    initializeMonnifyTransaction
   }
 
   function getHealth (cb) {
@@ -26,6 +27,14 @@ module.exports = function (opts = {}) {
 
   function authenticateUser (data, cb) {
     const url = `${endpoint}/api/user/authenticate`
+    // const opts = {
+    //   headers: { authorization: userEmail }
+    // }
+    postJSON(url, data, {}, cb)
+  }
+
+  function initializeMonnifyTransaction (data, cb) {
+    const url = `${endpoint}/api/monnify/initialize`
     // const opts = {
     //   headers: { authorization: userEmail }
     // }
