@@ -10,6 +10,7 @@ const client = Client({ endpoint })
 
 tape('Should create user via api', function (t) {
   const userData = {
+    fullname: 'Ojukwu Chibuzor',
     username: 'phirmware',
     email: 'chibuzor.ojukwu@gmail.com',
     password: '12345',
@@ -17,6 +18,7 @@ tape('Should create user via api', function (t) {
   }
   const expected = {
     user: {
+      fullname: 'Ojukwu Chibuzor',
       username: 'phirmware',
       email: 'chibuzor.ojukwu@gmail.com',
       phonenumber: '09036229746'

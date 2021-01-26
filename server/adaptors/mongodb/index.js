@@ -22,12 +22,12 @@ async function find (model, options = {}) {
   return Models[model].find()
 }
 
-async function createUser ({ username, email, phonenumber, password }) {
-  if (IS_TEST) return { username, email, phonenumber }
+async function createUser ({ username, fullname, email, phonenumber, password }) {
+  if (IS_TEST) return { username, fullname, email, phonenumber }
 
-  const newUser = new User({ username, email, phonenumber })
+  const newUser = new User({ username, fullname, email, phonenumber })
   await User.register(newUser, password)
-  return { username, email, phonenumber }
+  return { username, fullname, email, phonenumber }
 }
 
 async function findById (model, id, options = {}) {
