@@ -6,6 +6,8 @@ const config = require('./config/env')
 require('productionize')(name)
 console.log(config.message)
 
+console.log('DB_URL', process.env.DATABASE_URL)
+
 mongoose.connect(process.env.DATABASE_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
